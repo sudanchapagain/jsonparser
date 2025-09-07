@@ -34,28 +34,42 @@ private fun prettyPrint(value: JsonValue, indent: Int = 0) {
     when (value) {
         is JsonValue.JsonObject -> {
             if (value.value.isEmpty()) {
-                print("{}"); return
+                print("{}")
+                return
             }
             println("{")
+
             val lastKey = value.value.keys.last()
             for ((key, v) in value.value) {
                 print(indentStr.repeat(indent + 1) + "\"$key\": ")
                 prettyPrint(v, indent + 1)
-                if (key != lastKey) println(",") else println()
+
+                if (key != lastKey) {
+                    println(",")
+                } else {
+                    println()
+                }
             }
             print("$currentIndent}")
         }
 
         is JsonValue.JsonArray -> {
             if (value.value.isEmpty()) {
-                print("[]"); return
+                print("[]")
+                return
             }
             println("[")
+
             val lastIndex = value.value.size - 1
             value.value.forEachIndexed { i, item ->
                 print(indentStr.repeat(indent + 1))
                 prettyPrint(item, indent + 1)
-                if (i != lastIndex) println(",") else println()
+
+                if (i != lastIndex) {
+                    println(",")
+                } else {
+                    println()
+                }
             }
             print("$currentIndent]")
         }
