@@ -1,4 +1,6 @@
 json parser
 ===========
 
-see `test/kotlin/Main.kt` for usage
+a simple JSON parser.
+
+see `test/kotlin/Main.kt` for usage.
