@@ -85,9 +85,49 @@ class Lexer(private val input: String) {
             advance()
         }
 
-        while (current != null && current!!.isDigit()) {
+        if (current == '0') {
             sb.append(current)
             advance()
+        } else if (current != null && current!!.isDigit()) {
+            while (current != null && current!!.isDigit()) {
+                sb.append(current)
+                advance()
+            }
+        } else {
+            throw Exception("Invalid number")
+        }
+
+        if (current == '.') {
+            sb.append(current)
+            advance()
+
+            if (current == null || !current!!.isDigit()) {
+                throw Exception("Invalid fraction in number")
+            }
+
+            while (current != null && current!!.isDigit()) {
+                sb.append(current)
+                advance()
+            }
+        }
+
+        if (current == 'e' || current == 'E') {
+            sb.append(current)
+            advance()
+
+            if (current == '+' || current == '-') {
+                sb.append(current)
+                advance()
+            }
+
+            if (current == null || !current!!.isDigit()) {
+                throw Exception("Invalid exponent in number")
+            }
+
+            while (current != null && current!!.isDigit()) {
+                sb.append(current)
+                advance()
+            }
         }
 
         return Token(TokenType.NUMBER, sb.toString())
