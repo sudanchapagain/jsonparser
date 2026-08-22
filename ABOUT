@@ -1,5 +1,0 @@
-this was written to learn the basics of parsing. it neither follows a spec
-nor is it parsing in the best way possible. for example: the string handling
-is so basic that escape sequences breaks it. also, everything is limited to
-JVM types. so, this is permissive and strict at the same time for all the bad
-reasons.
